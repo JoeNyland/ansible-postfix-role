@@ -1,5 +1,5 @@
 ---
-- name: Install homeshick
+- name: Install Postfix
   tags: postfix
   become: true
   block:
