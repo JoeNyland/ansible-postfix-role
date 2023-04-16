@@ -1,0 +1,59 @@
+---
+- name: Install homeshick
+  tags: postfix
+  become: true
+  block:
+    - name: Install
+      apt:
+        name: postfix
+        update_cache: true
+
+    - name: Set the mail name
+      template:
+        src: etc/mailname.j2
+        dest: /etc/mailname
+        owner: root
+        group: root
+        mode: '0644'
+      notify: Reload Postfix
+
+    - name: Configure system aliases
+      template:
+        src: etc/aliases.j2
+        dest: /etc/aliases
+        owner: root
+        group: root
+        mode: '0644'
+      notify: Update aliases
+
+    - name: Configure
+      template:
+        src: etc/postfix/main.cf.j2
+        dest: /etc/postfix/main.cf
+        owner: root
+        group: root
+        mode: '0644'
+      notify: Reload Postfix
+
+    - name: Configure relay host SASL hash
+      template:
+        src: etc/postfix/sasl/passwd.j2
+        dest: /etc/postfix/sasl/passwd
+        owner: root
+        group: root
+        mode: '0600'
+        force: false
+      notify:
+        - Update SASL hash
+        - Reload Postfix
+      when:
+        - postfix_relay_host is defined
+        - postfix_relay_host.sasl_auth_enabled is defined
+        - postfix_relay_host.sasl_auth_enabled
+
+    - name: Ensure service is running and set to start at boot
+      service:
+        name: postfix
+        state: "{{ postfix_service.state }}"
+        enabled: "{{ postfix_service.enabled }}"
+      register: postfix_service

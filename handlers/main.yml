@@ -1,0 +1,14 @@
+---
+- name: Update aliases
+  command: newaliases
+  changed_when: true
+
+- name: Update SASL hash
+  command: postmap /etc/postfix/sasl/passwd
+  changed_when: true
+
+- name: Reload Postfix
+  service:
+    name: postfix
+    state: reloaded
+  when: postfix_service.enabled

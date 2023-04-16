@@ -1,0 +1,32 @@
+---
+postfix_service:
+  enabled: true
+  state: started
+postfix_inet_interfaces: loopback-only
+postfix_inet_protocols: all
+postfix_host_name: "{{ ansible_hostname }}"
+postfix_mail_name: "{{ postfix_host_name }}"
+postfix_destinations:
+  - localhost
+  - "{{ ansible_hostname }}"
+  - "{{ postfix_host_name }}"
+  - "{{ postfix_mail_name }}"
+postfix_aliases:
+  mailer-daemon: postmaster
+  postmaster: root
+  nobody: root
+  hostmaster: root
+  usenet: root
+  news: root
+  webmaster: root
+  www: root
+  ftp: root
+  abuse: root
+  noc: root
+  security: root
+postfix_networks:
+  - "127.0.0.0/8"
+  - "[::ffff:127.0.0.0]/104"
+  - "[::1]/128"
+postfix_relay_host_sasl_username:
+postfix_relay_host_sasl_password:
