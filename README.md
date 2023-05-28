@@ -53,6 +53,14 @@ User name to use to authenicate with a relay host.
 
 Password to use to authenicate with a relay host.
 
+### `postfix_smtpd_tls_cert_file`
+
+Allows a SSL certificate file to be set to override the default auto-generated one.
+
+### `postfix_smtpd_tls_key_file`
+
+Allows a SSL certificate key file to be set to override the default auto-generated one.
+
 Dependencies
 ------------
 

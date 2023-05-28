@@ -30,3 +30,5 @@ postfix_networks:
   - "[::1]/128"
 postfix_relay_host_sasl_username:
 postfix_relay_host_sasl_password:
+postfix_smtpd_tls_cert_file: /etc/ssl/certs/ssl-cert-snakeoil.pem
+postfix_smtpd_tls_key_file: /etc/ssl/private/ssl-cert-snakeoil.key
