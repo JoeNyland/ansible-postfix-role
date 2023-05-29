@@ -9,8 +9,7 @@ postfix_mail_name: "{{ ansible_fqdn }}"
 postfix_destinations:
   - localhost
   - "{{ ansible_hostname }}"
-  - "{{ postfix_host_name }}"
-  - "{{ postfix_mail_name }}"
+  - "{{ ansible_fqdn }}"
 postfix_aliases:
   mailer-daemon: postmaster
   postmaster: root
