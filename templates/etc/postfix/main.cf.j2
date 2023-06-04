@@ -34,6 +34,9 @@ smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_una
 
 myhostname = {{ postfix_host_name }}
 
+{% if postfix_mailbox_transport is defined %}
+mailbox_transport = {{ postfix_mailbox_transport}}
+{% endif %}
 mailbox_size_limit = 0
 
 recipient_delimiter = +

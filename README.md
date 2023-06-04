@@ -41,6 +41,10 @@ Domains and hostnames that Postfix should receive mail for.
 
 Aliases to be stored in `/etc/aliases`.
 
+### `mailbox_transport`
+
+Allows the mailbox transport to be configured.
+
 ### `postfix_networks`
 
 Network subnets which Postfix should listen on.
