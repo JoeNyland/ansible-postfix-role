@@ -8,9 +8,9 @@ galaxy_info:
   platforms:
   - name: Debian
     versions:
-      - bullseye # 11 (stable)
-      - buster # 10 (oldstable)
-      - stretch # 9 LTS (oldoldstable)
+      - bookworm # 12 (stable)
+      - bullseye # 11 (oldstable)
+      - buster # 10 (oldoldstable)
   galaxy_tags:
     - postfix
     - email
